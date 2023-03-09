@@ -3,12 +3,15 @@ import NavMenu from '@/components/NavMenu.vue'
 </script>
 
 <template>
-  <h1>Call API</h1>
-  <div class="card-divider">
-    <p>{{ joke }}</p>
-    <p>{{ url }}</p>
-    <p>{{ date }}</p>
-    <p>{{ id }}</p>
+  <h1 class="header">Chuck Norris Joke Generator</h1>
+  <div>
+    <button id="clickMe">Generate New Joke</button>
+  </div>
+  <div class="joke_info">
+    <p>JOKE : {{ joke }}</p>
+    <p>URL : {{ url }}</p>
+    <p>DATE : {{ date }}</p>
+    <p>ID : {{ id }}</p>
   </div>
 </template>
 
@@ -24,6 +27,7 @@ export default {
       joke: null,
     }
   },
+
   async mounted() {
     let result = await axios.get('https://api.chucknorris.io/jokes/random')
     console.warn(result.data)
@@ -32,17 +36,25 @@ export default {
     this.date = result.data.created_at
     this.joke = result.data.value
   },
+
+  methods: {
+    showAlert: (message) => {
+      alert(message)
+    },
+  },
 }
 </script>
 
 <style>
-.item {
+.header {
+  display: ;
 }
-.item li {
+.joke_info {
   display: inline-block;
   border: 1px solid;
-  width: 180px;
+  width: 1000px;
   text-align: center;
   padding: 5px;
+  background-color: burlywood;
 }
 </style>
